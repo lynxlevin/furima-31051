@@ -1,24 +1,86 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
+| Colummns             | Type       | Options     |
+| -------------------- | ---------- | ----------- |
+| nickname             | string     | null: false |
+| email                | string     | null: false |
+| password             | string     | null: false |
+| family_name_kanji    | string     | null: false |
+| first_name_kanji     | string     | null: false |
+| family_name_katakana | string     | null: false |
+| first_name_katakana  | string     | null: false |
+| birthday             | date       | null: false |
 
-Things you may want to cover:
+### Association
+- has_many :items
+- has_many :orders
+- has_many :favorites
+- has_many :comments
 
-* Ruby version
+## items テーブル
+| Colummns                | Type       | Options                        |
+| ----------------------- | ---------- | ------------------------------ |
+| name                    | string     | null: false                    |
+| description             | text       | null: false                    |
+| category_id             | integer    | null: false                    |
+| product_condition_id    | integer    | null: false                    |
+| shipping_fee_bearer_id  | integer    | null: false                    |
+| ship_from_prefecture_id | integer    | null: false                    |
+| days_to_ship_id         | integer    | null: false                    |
+| price                   | integer    | null: false                    |
+| user                    | references | null: false, foreign_key: true |
 
-* System dependencies
+### Association
+- belongs_to       :user
+- has_one_attached :image
+- has_one          :order
+- has_many         :favorites
+- has_many         :comments
 
-* Configuration
+## orders テーブル
+| Colummns     | Type       | Options                        |
+| ------------ | ---------- | ------------------------------ |
+| user         | references | null: false, foreign_key: true |
+| item         | references | null: false, foreign_key: true |
 
-* Database creation
+### Association
+- belongs_to    :user
+- belongs_to    :item
+- has_one       :delivery_address
+- attr_accessor :token <!-- Pay.jpのトークン -->
 
-* Database initialization
+## delivery_addresses テーブル
+| Colummns          | Type       | Options                        |
+| ----------------- | ---------- | ------------------------------ |
+| zipcode           | string     | null: false                    |
+| prefecture_id     | integer    | null: false                    |
+| city              | string     | null: false                    |
+| block             | string     | null: false                    |
+| building_and_room | string     |                                |
+| telephone_number  | string     | null: false                    |
+| order             | references | null: false, foreign_key: true |
 
-* How to run the test suite
+### Association
+- belongs_to :order
 
-* Services (job queues, cache servers, search engines, etc.)
+## favorites テーブル
+| Colummns     | Type       | Options                        |
+| ------------ | ---------- | ------------------------------ |
+| user         | references | null: false, foreign_key: true |
+| item         | references | null: false, foreign_key: true |
 
-* Deployment instructions
+### Association
+- belongs_to :user
+- belongs_to :item
 
-* ...
+## comments テーブル
+| Colummns     | Type       | Options                        |
+| ------------ | ---------- | ------------------------------ |
+| user         | references | null: false, foreign_key: true |
+| item         | references | null: false, foreign_key: true |
+| text         | text       | null: false                    |
+
+### Association
+- belongs_to :user
+- belongs_to :item
