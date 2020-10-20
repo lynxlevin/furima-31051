@@ -19,17 +19,17 @@
 - has_many :comments
 
 ## items テーブル
-| Colummns             | Type       | Options                        |
-| -------------------- | ---------- | ------------------------------ |
-| name                 | string     | null: false                    |
-| description          | text       | null: false                    |
-| category             | integer    | null: false                    |
-| product_condition    | integer    | null: false                    |
-| shipping_fee_bearer  | integer    | null: false                    |
-| ship_from_prefecture | integer    | null: false                    |
-| days_to_ship         | integer    | null: false                    |
-| price                | integer    | null: false                    |
-| user                 | references | null: false, foreign_key: true |
+| Colummns                | Type       | Options                        |
+| ----------------------- | ---------- | ------------------------------ |
+| name                    | string     | null: false                    |
+| description             | text       | null: false                    |
+| category_id             | integer    | null: false                    |
+| product_condition_id    | integer    | null: false                    |
+| shipping_fee_bearer_id  | integer    | null: false                    |
+| ship_from_prefecture_id | integer    | null: false                    |
+| days_to_ship_id         | integer    | null: false                    |
+| price                   | integer    | null: false                    |
+| user                    | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to       :user
@@ -54,10 +54,10 @@
 | Colummns          | Type       | Options                        |
 | ----------------- | ---------- | ------------------------------ |
 | zipcode           | string     | null: false                    |
-| prefecture        | string     | null: false                    |
+| prefecture_id     | integer    | null: false                    |
 | city              | string     | null: false                    |
 | block             | string     | null: false                    |
-| building_and_room | string     | null: false                    |
+| building_and_room | string     |                                |
 | telephone_number  | string     | null: false                    |
 | order             | references | null: false, foreign_key: true |
 
