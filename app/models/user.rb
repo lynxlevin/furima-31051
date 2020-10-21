@@ -4,12 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :nickname,             presence: true, uniqueness: true
-  validates :birthday,             presence: true
-  validates :family_name_kanji,    presence: true, format: { with: /\A[ぁ-んァ-ヶー一-龥]+\z/, message: 'Full-width characters' }
-  validates :first_name_kanji,     presence: true, format: { with: /\A[ぁ-んァ-ヶー一-龥]+\z/, message: 'Full-width characters' }
-  validates :family_name_katakana, presence: true, format: { with: /\A[ァ-ヶー]+\z/, message: 'Full-width katakana characters' }
-  validates :first_name_katakana,  presence: true, format: { with: /\A[ァ-ヶー]+\z/, message: 'Full-width katakana characters' }
+  with_options presence: true do
+    validates :nickname,             uniqueness: true
+    validates :birthday,             presence: true
+    validates :family_name_kanji,    format: { with: /\A[ぁ-んァ-ヶー一-龥]+\z/, message: 'Full-width characters' }
+    validates :first_name_kanji,     format: { with: /\A[ぁ-んァ-ヶー一-龥]+\z/, message: 'Full-width characters' }
+    validates :family_name_katakana, format: { with: /\A[ァ-ヶー]+\z/, message: 'Full-width katakana characters' }
+    validates :first_name_katakana,  format: { with: /\A[ァ-ヶー]+\z/, message: 'Full-width katakana characters' }
+  end
   validate :password_complexity
 
   def password_complexity
