@@ -31,3 +31,11 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      user:
+        birthday: Birth date
+        family_name_kanji: Last name
+        first_name_kanji: First name
+        family_name_katakana: Last name kana
+        first_name_katakana: First name kana

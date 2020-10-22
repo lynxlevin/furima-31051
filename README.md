@@ -1,16 +1,16 @@
 # テーブル設計
 
 ## users テーブル
-| Colummns             | Type       | Options     |
-| -------------------- | ---------- | ----------- |
-| nickname             | string     | null: false |
-| email                | string     | null: false |
-| password             | string     | null: false |
-| family_name_kanji    | string     | null: false |
-| first_name_kanji     | string     | null: false |
-| family_name_katakana | string     | null: false |
-| first_name_katakana  | string     | null: false |
-| birthday             | date       | null: false |
+| Colummns             | Type       | Options                       |
+| -------------------- | ---------- | ----------------------------- |
+| nickname             | string     | null: false, uniqueness: true |
+| email                | string     | null: false                   |
+| password             | string     | null: false                   |
+| family_name_kanji    | string     | null: false                   |
+| first_name_kanji     | string     | null: false                   |
+| family_name_katakana | string     | null: false                   |
+| first_name_katakana  | string     | null: false                   |
+| birthday             | date       | null: false                   |
 
 ### Association
 - has_many :items
