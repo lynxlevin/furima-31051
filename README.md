@@ -26,7 +26,7 @@
 | category_id             | integer    | null: false                    |
 | product_condition_id    | integer    | null: false                    |
 | shipping_fee_bearer_id  | integer    | null: false                    |
-| ship_from_prefecture_id | integer    | null: false                    |
+| prefecture_id           | integer    | null: false                    |
 | days_to_ship_id         | integer    | null: false                    |
 | price                   | integer    | null: false                    |
 | user                    | references | null: false, foreign_key: true |
@@ -37,6 +37,11 @@
 - has_one          :order
 - has_many         :favorites
 - has_many         :comments
+- belongs_to_active_hash :category
+- belongs_to_active_hash :product_condition
+- belongs_to_active_hash :shipping_fee_bearer
+- belongs_to_active_hash :prefecture
+- belongs_to_active_hash :days_to_ship
 
 ## orders テーブル
 | Colummns     | Type       | Options                        |
