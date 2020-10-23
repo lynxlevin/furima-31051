@@ -13,8 +13,16 @@ class Item < ApplicationRecord
     validates :name
     validates :description
     validates :price,
-      format: { with: /[\d]+/, message: 'Half-width number' },
-      numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than: 10000000, message: 'Out of setting range' }
+              format: {
+                with: /[\d]+/,
+                message: 'Half-width number'
+              },
+              numericality: {
+                only_integer: true,
+                greater_than_or_equal_to: 300,
+                less_than: 10_000_000,
+                message: 'Out of setting range'
+              }
     validates :category_id,            numericality: { other_than: 1, message: 'Select' }
     validates :product_condition_id,   numericality: { other_than: 1, message: 'Select' }
     validates :shipping_fee_bearer_id, numericality: { other_than: 1, message: 'Select' }
