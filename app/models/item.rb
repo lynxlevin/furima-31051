@@ -11,11 +11,11 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :name
     validates :description
-    validates :price                 , numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than: 10000000 }# , format: { with: /[\d]]+/, message: 'Half-width number' }
-    validates :category_id           , numericality: { other_than: 1 }
-    validates :product_condition_id  , numericality: { other_than: 1 }
+    validates :price,                  numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than: 10000000 }# , format: { with: /[\d]]+/, message: 'Half-width number' }
+    validates :category_id,            numericality: { other_than: 1 }
+    validates :product_condition_id,   numericality: { other_than: 1 }
     validates :shipping_fee_bearer_id, numericality: { other_than: 1 }
-    validates :prefecture_id         , numericality: { other_than: 1 }
-    validates :days_to_ship_id       , numericality: { other_than: 1 }
+    validates :prefecture_id,          numericality: { other_than: 1 }
+    validates :days_to_ship_id,        numericality: { other_than: 1 }
   end
 end
