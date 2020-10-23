@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to       :user
   has_one_attached :image
   belongs_to_active_hash :category
@@ -16,6 +17,5 @@ class Item < ApplicationRecord
     validates :shipping_fee_bearer_id
     validates :prefecture_id
     validates :days_to_ship_id
-    validates :user, foreign_key: true
   end
 end
