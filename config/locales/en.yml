@@ -39,3 +39,9 @@ en:
         first_name_kanji: First name
         family_name_katakana: Last name kana
         first_name_katakana: First name kana
+      item:
+        description: Info
+        # category_id: Category
+        product_condition_id: Sales status
+        shipping_fee_bearer_id: Shipping fee status
+        days_to_ship_id: Scheduled delivery
