@@ -1,9 +1,9 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, only:[:new]
   def index
   end
 
   def new
-    redirect_to new_user_session_path unless user_signed_in?
     @item = Item.new
   end
 
