@@ -5,11 +5,11 @@ class ItemsController < ApplicationController
   def index
     @items = Item.order(created_at: :desc)
   end
-  
+
   def new
     @item = Item.new
   end
-  
+
   def create
     @item = Item.new(item_params)
     if @item.save
@@ -18,7 +18,7 @@ class ItemsController < ApplicationController
       render :new
     end
   end
-  
+
   def show
   end
 
@@ -62,7 +62,7 @@ class ItemsController < ApplicationController
   def find_item
     @item = Item.find(params[:id])
   end
-  
+
   def user_eligible?(item)
     user_signed_in? && current_user.id == item.user_id
   end
@@ -71,5 +71,4 @@ class ItemsController < ApplicationController
     @commission = (@item.price * 0.1).floor
     @profit = @item.price - @commission
   end
-
 end
