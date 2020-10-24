@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
   before_action :find_item, only: [:show, :destroy, :edit, :update]
-  before_action :calc_commission_profit, only: [:edit, :update]
   before_action :redirect_ileligible_user, only: [:edit]
   def index
     @items = Item.order(created_at: :desc)
