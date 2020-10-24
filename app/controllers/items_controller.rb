@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
+  before_action :find_item, only: [:show, :destroy]
   def index
     @items = Item.order(created_at: :desc)
   end
@@ -18,12 +19,11 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def destroy
-    @item = Item.find(params[:id])
-    if user_signed_in? && current_user.id == @item.user_id && Item.destroy(params[:id])
+    if user_signed_in? && current_user.id == @item.user_id
+      Item.destroy(params[:id])
       redirect_to root_path
     else
       render :show
@@ -44,5 +44,9 @@ class ItemsController < ApplicationController
       :days_to_ship_id,
       :price
     ).merge(user_id: current_user.id)
+  end
+
+  def find_item
+    @item = Item.find(params[:id])
   end
 end
