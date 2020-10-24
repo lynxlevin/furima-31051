@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if user_signed_in? && current_user.id == @item.user_id
+    if user_eligible?(@item)
       @item.destroy
       redirect_to root_path
     else
@@ -31,7 +31,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    redirect_to root_path unless user_signed_in? && current_user.id == @item.user_id
+    redirect_to root_path unless user_eligible?(@item)
   end
 
   def update
@@ -60,6 +60,10 @@ class ItemsController < ApplicationController
 
   def find_item
     @item = Item.find(params[:id])
+  end
+  
+  def user_eligible?(item)
+    user_signed_in? && current_user.id == item.user_id
   end
 
 end
