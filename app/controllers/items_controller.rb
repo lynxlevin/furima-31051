@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
   before_action :find_item, only: [:show, :destroy, :edit, :update]
+  before_action :calc_commission_profit, only: [:edit, :update]
   def index
     @items = Item.order(created_at: :desc)
   end
@@ -64,6 +65,11 @@ class ItemsController < ApplicationController
   
   def user_eligible?(item)
     user_signed_in? && current_user.id == item.user_id
+  end
+
+  def calc_commission_profit
+    @commission = (@item.price * 0.1).floor
+    @profit = @item.price - @commission
   end
 
 end
