@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
   before_action :find_item, only: [:show, :destroy, :edit, :update]
   before_action :calc_commission_profit, only: [:edit, :update]
+  before_action :redirect_ileligible_user, only: [:edit]
   def index
     @items = Item.order(created_at: :desc)
   end
@@ -23,7 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if user_eligible?(@item)
+    if user_signed_in? && current_user.id == @item.user_id
       @item.destroy
       redirect_to root_path
     else
@@ -32,7 +33,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    redirect_to root_path unless user_eligible?(@item)
   end
 
   def update
@@ -63,8 +63,10 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def user_eligible?(item)
-    user_signed_in? && current_user.id == item.user_id
+  def redirect_ileligible_user
+    unless user_signed_in? && current_user.id == @item.user_id
+      redirect_to root_path
+    end
   end
 
   def calc_commission_profit
