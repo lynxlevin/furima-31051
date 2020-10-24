@@ -69,8 +69,4 @@ class ItemsController < ApplicationController
     end
   end
 
-  def calc_commission_profit
-    @commission = (@item.price * 0.1).floor
-    @profit = @item.price - @commission
-  end
 end
