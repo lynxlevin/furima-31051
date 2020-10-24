@@ -19,7 +19,7 @@
         ¥ <%= @item.price %>
       </span>
       <span class="item-postage">
-        <%= ShippingFeeBearer.find(@item.shipping_fee_bearer_id)[:name] %>
+        <%= @item.shipping_fee_bearer.name %>
       </span>
     </div>
 
@@ -47,23 +47,23 @@
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= Category.find(@item.category_id)[:name] %></td>
+          <td class="detail-value"><%= @item.category.name %></td>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>
-          <td class="detail-value"><%= ProductCondition.find(@item.product_condition_id)[:name] %></td>
+          <td class="detail-value"><%= @item.product_condition.name %></td>
         </tr>
         <tr>
           <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= ShippingFeeBearer.find(@item.shipping_fee_bearer_id)[:name] %></td>
+          <td class="detail-value"><%= @item.shipping_fee_bearer.name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>
-          <td class="detail-value"><%= Prefecture.find(@item.prefecture_id)[:name] %></td>
+          <td class="detail-value"><%= @item.prefecture.name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送日の目安</th>
-          <td class="detail-value"><%= DaysToShip.find(@item.days_to_ship_id)[:name] %></td>
+          <td class="detail-value"><%= @item.days_to_ship.name %></td>
         </tr>
       </tbody>
     </table>
@@ -102,7 +102,7 @@
       後ろの商品 ＞
     </a>
   </div>
-  <a href="#" class='another-item'><%= Category.find(@item.category_id)[:name] %>をもっと見る</a>
+  <a href="#" class='another-item'><%= @item.category.name %>をもっと見る</a>
 </div>
 
 <%= render "shared/footer" %>
