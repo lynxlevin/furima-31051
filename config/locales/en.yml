@@ -45,3 +45,7 @@ en:
         product_condition_id: Sales status
         shipping_fee_bearer_id: Shipping fee status
         days_to_ship_id: Scheduled delivery
+      order_address:
+        zipcode: Postal code
+        block: Addresses
+        telephone_number: Phone number
