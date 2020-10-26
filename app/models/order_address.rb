@@ -12,13 +12,13 @@ class OrderAddress
                 :token
 
   with_options presence: true do
+    validates :token
     validates :zipcode,          format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'Input correctly' }
+    validates :prefecture_id,    numericality: { other_than: 1, message: 'Select' }
     validates :city
     validates :block
     validates :telephone_number, format: { with: /\A[0-9]+\z/, message: 'Input only number' }
-    validates :token
   end
-  validates :prefecture_id,    numericality: { other_than: 1, message: 'Select' }
 
   def save
     order = Order.new(user_id: current_user.id, item_id: @item.id)
