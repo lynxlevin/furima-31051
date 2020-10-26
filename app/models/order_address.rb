@@ -4,7 +4,7 @@ class OrderAddress
   attr_accessor :user_id,
                 :item_id,
                 :zipcode,
-                :prefecture_id,
+                :prefecture,
                 :city,
                 :block,
                 :building_and_room,
@@ -15,7 +15,7 @@ class OrderAddress
                 :phone_number
 
   with_options presence: true do
-    validates :token
+    # validates :token
     validates :postal_code,          format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'Input correctly' }
     validates :prefecture_id,    numericality: { other_than: 1, message: 'Select' }
     validates :city
@@ -28,7 +28,7 @@ class OrderAddress
     order.save
     DeliveryAddress.create(
       zipcode: postal_code,
-      prefecture_id: prefecture_id,
+      prefecture: prefecture,
       city: city,
       block: addresses,
       building_and_room: building_and_room,
