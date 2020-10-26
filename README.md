@@ -68,6 +68,7 @@
 
 ### Association
 - belongs_to :order
+- belongs_to_active_hash :prefecture
 
 ## favorites テーブル
 | Colummns     | Type       | Options                        |
