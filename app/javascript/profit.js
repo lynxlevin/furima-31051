@@ -1,4 +1,4 @@
-window.addEventListener("turbolinks:load", () =>{
+window.addEventListener("load", () =>{
   const path = location.pathname
   if (checkPath(path)) {
     const priceInput = document.getElementById("item-price");

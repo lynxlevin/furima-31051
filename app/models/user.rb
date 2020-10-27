@@ -5,9 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items
+  has_many :orders
 
   with_options presence: true do
-    validates :nickname, uniqueness: true
+    validates :nickname, uniqueness: { case_sensitive: true }
     validates :birthday
     validates :family_name_kanji,    format: { with: /\A[ぁ-んァ-ヶー一-龥]+\z/, message: 'Full-width characters' }
     validates :first_name_kanji,     format: { with: /\A[ぁ-んァ-ヶー一-龥]+\z/, message: 'Full-width characters' }

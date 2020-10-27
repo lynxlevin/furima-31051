@@ -1,7 +1,9 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
   before_action :find_item, only: [:show, :destroy, :edit, :update]
-  before_action :redirect_ileligible_user, only: [:edit]
+  before_action :redirect_ileligible_user_to_root, only: [:destroy, :edit, :update]
+  before_action :redirect_to_root_if_soldout, only: [:destroy, :edit, :update]
+
   def index
     @items = Item.order(created_at: :desc)
   end
@@ -62,10 +64,11 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def redirect_ileligible_user
-    unless user_signed_in? && current_user.id == @item.user_id
-      redirect_to root_path
-    end
+  def redirect_ileligible_user_to_root
+    redirect_to root_path unless user_signed_in? && current_user.id == @item.user_id
   end
 
+  def redirect_to_root_if_soldout
+    redirect_to root_path unless @item.order.nil?
+  end
 end
