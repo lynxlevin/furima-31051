@@ -5,7 +5,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    binding.pry
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
       @order_address.save
@@ -25,11 +24,10 @@ class OrdersController < ApplicationController
       :block,
       :building_and_room,
       :telephone_number
-      ).merge(user_id: current_user.id).merge(item_id: @item.id).merge(token: params[:token])
+    ).merge(user_id: current_user.id).merge(item_id: @item.id).merge(token: params[:token])
   end
 
   def find_item
     @item = Item.find(params[:item_id])
   end
-
 end

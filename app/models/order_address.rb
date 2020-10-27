@@ -1,5 +1,5 @@
 class OrderAddress
-  
+
   include ActiveModel::Model
   attr_accessor :user_id,
                 :item_id,
@@ -8,7 +8,7 @@ class OrderAddress
                 :city,
                 :block,
                 :building_and_room,
-                :telephone_number, 
+                :telephone_number,
                 :token
 
   with_options presence: true do
@@ -30,6 +30,7 @@ class OrderAddress
       block: block,
       building_and_room: building_and_room,
       telephone_number: telephone_number,
-      order_id: order.id )
+      order_id: order.id
+    )
   end
 end
