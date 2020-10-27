@@ -20,8 +20,7 @@ class OrderAddress
   end
 
   def save
-    order = Order.new(user_id: user_id, item_id: item_id)
-    order.save
+    order = Order.create(user_id: user_id, item_id: item_id)
     DeliveryAddress.create(
       zipcode: zipcode,
       prefecture_id: prefecture_id,
