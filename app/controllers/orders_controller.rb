@@ -35,9 +35,7 @@ class OrdersController < ApplicationController
   end
 
   def redirect_seller_to_root
-    return unless user_signed_in? && current_user == @item.user
-
-    redirect_to root_path
+    redirect_to root_path if user_signed_in? && current_user == @item.user
   end
 
   def redirect_if_soldout
