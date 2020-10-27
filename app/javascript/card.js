@@ -1,7 +1,7 @@
 const pay = () => {
   const path = location.pathname;
   if (checkPath(path)) {
-    Payjp.setPublicKey("pk_test_fc38ec1963d8ce605c20f116");
+    Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY);
     const form = document.getElementById("charge-form");
     form.addEventListener("submit", (e) => {
       e.preventDefault();
