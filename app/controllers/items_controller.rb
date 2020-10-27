@@ -65,9 +65,7 @@ class ItemsController < ApplicationController
   end
 
   def redirect_ileligible_user_to_root
-    return if user_signed_in? && current_user.id == @item.user_id
-
-    redirect_to root_path
+    redirect_to root_path unless user_signed_in? && current_user.id == @item.user_id
   end
 
   def redirect_to_root_if_soldout
