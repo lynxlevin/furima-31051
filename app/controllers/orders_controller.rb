@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
       :block,
       :building_and_room,
       :telephone_number
-    ).merge(user_id: current_user.id).merge(item_id: @item.id).merge(token: params[:token])
+    ).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
   end
 
   def find_item
