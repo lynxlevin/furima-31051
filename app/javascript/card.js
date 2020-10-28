@@ -23,6 +23,7 @@ const pay = () => {
           const tokenObj = `<input value=${token} name='token' type='hidden'>`;
           renderDom.insertAdjacentHTML('beforeend', tokenObj);
         };
+        debugger;
         removeCardInfo();
         document.getElementById('charge-form').submit();
       });
