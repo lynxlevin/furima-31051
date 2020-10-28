@@ -12,8 +12,8 @@ window.addEventListener("load", () =>{
 function checkPath(path) {
   if (path === "/items/new") {return true};
   if (path === "/items") {return true};
-  if (path === `/items/${location.pathname.match(/\d/)}/edit`) {return true};
-  if (path === `/items/${location.pathname.match(/\d/)}`) {return true};
+  if (path === `/items/${location.pathname.match(/[\d]+/)}/edit`) {return true};
+  if (path === `/items/${location.pathname.match(/[\d]+/)}`) {return true};
 }
 function printProfit(priceInput) {
   const commission = parseInt(priceInput.value / 10);
