@@ -8,7 +8,8 @@ class OrderAddress
                 :block,
                 :building_and_room,
                 :telephone_number,
-                :token
+                :token,
+                :price
 
   with_options presence: true do
     validates :token

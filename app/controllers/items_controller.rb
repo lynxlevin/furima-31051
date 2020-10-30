@@ -22,6 +22,17 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @previous_item_id = if @item == Item.first
+                          @item.id
+                        else
+                          find_adjacent_item(@item.id, -1)
+                        end
+
+    @next_item_id = if @item == Item.last
+                      @item.id
+                    else
+                      find_adjacent_item(@item.id, 1)
+                    end
   end
 
   def destroy
@@ -48,15 +59,9 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(
-      :image,
-      :name,
-      :description,
-      :category_id,
-      :product_condition_id,
-      :shipping_fee_bearer_id,
-      :prefecture_id,
-      :days_to_ship_id,
-      :price
+      :image, :name, :description, :category_id,
+      :product_condition_id, :shipping_fee_bearer_id,
+      :prefecture_id, :days_to_ship_id, :price
     ).merge(user_id: current_user.id)
   end
 
@@ -70,5 +75,11 @@ class ItemsController < ApplicationController
 
   def redirect_to_root_if_soldout
     redirect_to root_path unless @item.order.nil?
+  end
+
+  def find_adjacent_item(current_item_id, i)
+    adjacent_item_id = current_item_id + i
+    adjacent_item_id += i until Item.exists?(adjacent_item_id)
+    adjacent_item_id
   end
 end
