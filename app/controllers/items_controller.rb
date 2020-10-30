@@ -22,6 +22,17 @@ class ItemsController < ApplicationController
   end
 
   def show
+    if @item == Item.first
+      @previous_item_id = @item.id
+    else
+      @previous_item_id = find_adjacent_item(@item.id, -1)
+    end
+
+    if @item == Item.last
+      @next_item_id = @item.id
+    else
+      @next_item_id = find_adjacent_item(@item.id, 1)
+    end
   end
 
   def destroy
@@ -70,5 +81,11 @@ class ItemsController < ApplicationController
 
   def redirect_to_root_if_soldout
     redirect_to root_path unless @item.order.nil?
+  end
+
+  def find_adjacent_item(current_item_id, i)
+    adjacent_item_id = current_item_id + i
+    adjacent_item_id += i until Item.exists?(adjacent_item_id)
+    adjacent_item_id
   end
 end
