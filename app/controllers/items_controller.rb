@@ -22,17 +22,17 @@ class ItemsController < ApplicationController
   end
 
   def show
-    if @item == Item.first
-      @previous_item_id = @item.id
-    else
-      @previous_item_id = find_adjacent_item(@item.id, -1)
-    end
+    @previous_item_id = if @item == Item.first
+                          @item.id
+                        else
+                          find_adjacent_item(@item.id, -1)
+                        end
 
-    if @item == Item.last
-      @next_item_id = @item.id
-    else
-      @next_item_id = find_adjacent_item(@item.id, 1)
-    end
+    @next_item_id = if @item == Item.last
+                      @item.id
+                    else
+                      find_adjacent_item(@item.id, 1)
+                    end
   end
 
   def destroy
