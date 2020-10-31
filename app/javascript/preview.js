@@ -4,7 +4,7 @@ window.addEventListener("load", () => {
     itemImage.addEventListener("change", function(e) {
       const imageContent = document.getElementById("image-blob");
       if (imageContent) {imageContent.remove();}
-      
+
       const imageHTML = createImageHTML(e);
       
       const ImageList = document.getElementById("image-list");
@@ -24,8 +24,6 @@ function createImageHTML(e) {
   const file = e.target.files[0];
   const blob = window.URL.createObjectURL(file);
   return `
-  <div>
-    <img src="${blob}" id="image-blob" style="width: 300px;">
-  </div>
+  <img src="${blob}" id="image-blob" style="max-width: 100%;">
   `
 };
