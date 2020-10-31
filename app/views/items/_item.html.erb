@@ -2,7 +2,7 @@
         <%= link_to item_path(item.id) do %>
           <div class='item-img-content'>
             <%= image_tag item.image.variant(resize: '296x296'), class: "item-img" %>
-            <% unless item.order.nil? %>
+            <% if item.order.present? %>
               <div class='sold-out'>
                 <span>Sold Out!!</span>
               </div>

@@ -74,7 +74,7 @@ class ItemsController < ApplicationController
   end
 
   def redirect_to_root_if_soldout
-    redirect_to root_path unless @item.order.nil?
+    redirect_to root_path if @item.order.present?
   end
 
   def find_adjacent_item(current_item_id, i)

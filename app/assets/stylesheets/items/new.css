@@ -29,6 +29,12 @@
   text-align: center;
 }
 
+#image-list {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
 /* 共通 */
 .indispensable {
   background: #ea352d;

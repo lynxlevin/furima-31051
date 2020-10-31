@@ -8,7 +8,7 @@
     </h2>
     <div class='item-img-content'>
       <%= image_tag @item.image.variant(resize: '1000x1000') ,class:"item-box-img" %>
-      <% unless @item.order.nil? %>
+      <% if @item.order.present? %>
         <div class='sold-out'>
           <span>Sold Out!!</span>
         </div>

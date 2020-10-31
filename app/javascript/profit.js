@@ -1,6 +1,5 @@
-window.addEventListener("load", () =>{
-  const path = location.pathname
-  if (checkPath(path)) {
+window.addEventListener("load", () => {
+  if (checkPath()) {
     const priceInput = document.getElementById("item-price");
     printProfit(priceInput);
     priceInput.addEventListener("input", () => {
@@ -9,7 +8,8 @@ window.addEventListener("load", () =>{
   }
 });
 
-function checkPath(path) {
+function checkPath() {
+  const path = location.pathname
   if (path === "/items/new") {return true};
   if (path === "/items") {return true};
   if (path === `/items/${location.pathname.match(/[\d]+/)}/edit`) {return true};
