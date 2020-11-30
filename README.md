@@ -40,7 +40,7 @@ https://docs.google.com/spreadsheets/d/1Bd2DfpwL2TEN9hauyKhqXfjoExxBwVSV-7hVHxYs
 - パンくず機能
 
 ## ・商品参照画面から前後の商品へ移動する機能
-商品の閲覧、比較をしやすくするために、各商品一覧ページ下部にある「前の商品へ」「後ろの商品へ」ボタンに、前後の商品へのリンクを設定しました。 
+商品の閲覧、比較をしやすくするために、各商品一覧ページ下部にある「前の商品へ」「後ろの商品へ」ボタンに、前後の商品へのリンクを設定しました。  
 ![Nov-24-2020 18-42-37](https://user-images.githubusercontent.com/72173230/100561275-c51b1a80-32fb-11eb-81f6-db6fbc88f4de.gif)
 
 ## ・商品画像のAmazon S3への保存機能
